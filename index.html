@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Portfolio</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #FFFFFF; /* Primary background color */
+      color: #4500FF; /* Inverted primary text color */
+    }
+
+    header {
+      background-color: #4500FF; /* Primary background color */
+      color: white; /* Inverted primary text color */
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #4500FF; /* Primary background color */
+      color: white; /* Inverted primary text color */
+      padding: 10px 0;
+      transform: rotate(-3deg);
+      position: relative;
+      z-index: 2;
+    }
+
+    nav a {
+      color: white; /* Inverted primary link text color */
+      text-decoration: none;
+      padding: 10px 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      border-bottom: 2px solid white; /* Inverted primary link border color */
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 0;
+      clip-path: polygon(0 0, 100% 20%, 100% 100%, 0% 80%);
+      animation: slideIn 1s ease;
+    }
+
+    @keyframes slideIn {
+      from { clip-path: polygon(0 0, 100% 20%, 100% 100%, 0% 80%); }
+      to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); }
+    }
+
+    .hero h2 {
+      font-size: 32px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .project {
+      border: 10px dashed #4500FF; /* Inverted primary border color */
+      border-radius: 10px;
+      padding: 20px;
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      cursor: pointer;
+      animation: flipInX 1s ease;
+    }
+
+    @keyframes flipInX {
+      from { transform: rotateX(180deg); }
+      to { transform: rotateX(0); }
+    }
+
+    .project:hover {
+      transform: translateY(-5px) rotate(5deg);
+    }
+
+    .project h3 {
+      font-size: 24px;
+      margin: 10px 0;
+      font-weight: 600;
+    }
+
+    .project p {
+      font-size: 16px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    /* Loader styles */
+    .loader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #4500FF; /* Primary background color */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: showLoader 5s forwards;
+    }
+
+    .loader-content {
+      font-size: 32px;
+      font-weight: 600;
+      text-align: center;
+      color: white; /* Inverted primary text color */
+    }
+
+    .loading-bar {
+      width: 200px;
+      height: 8px;
+      background-color: #4500FF; /* Inverted primary loading bar color */
+      border-radius: 5px;
+      margin-top: 10px;
+      padding: 3px; /* Add padding on each side */
+      border: 2px dashed white; /* Inverted primary dashed loading bar color */
+    }
+
+    .loading-progress {
+      width: 0;
+      height: 100%;
+      background-color: white; /* Inverted primary loading bar color */
+      border-radius: 5px;
+      animation: progressBar 2s linear; /* 2-second loading animation */
+    }
+
+    @keyframes showLoader {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @keyframes progressBar {
+      0% { width: 0; }
+      100% { width: 100%; }
+    }
+
+    /* Hide the loader when the content is ready */
+    body.loading .loader-container {
+      animation: fadeOut 0.2s 5s forwards;
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    /* Show the content after the loader is hidden */
+    body.loading .container {
+      opacity: 0;
+    }
+
+    body.loaded .container {
+      opacity: 1;
+      transition: opacity 1s;
+    }
+  </style>
+</head>
+<body class="loading">
+  <!-- Loader -->
+  <div class="loader-container">
+    <div class="loader-content">Creating Art...</div>
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+  </div>
+
+  <header>
+    <h1>H0LD3N</h1>
+    <p>Designer &amp; Artist</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="container">
+    <section id="home">
+      <div class="hero">
+        <h2>Welcome to my Portfolio</h2>
+        <p>Discover my creative world of art and design</p>
+      </div>
+
+      <section id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="portfolio-grid">
+          <div class="project">
+            <h3>Project 1</h3>
+            <p>Description of Project 1</p>
+          </div>
+          <div class="project">
+            <h3>Project 2</h3>
+            <p>Description of Project 2</p>
+          </div>
+          <!-- Add more projects as needed -->
+        </div>
+      </section>
+
+      <section id="about">
+        <h2>About</h2>
+        <!-- Your content here -->
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <!-- Your contact form or information here -->
+      </section>
+	  </section>
+    </div>
+
+    <footer>
+      <p>&copy; 2023 H0LD3N. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // JavaScript to hide the loader and show the page content when it's fully loaded
+      window.addEventListener("load", function () {
+        document.body.classList.remove("loading");
+        document.body.classList.add("loaded");
+      });
+    </script>
+  </body>
+</html>
